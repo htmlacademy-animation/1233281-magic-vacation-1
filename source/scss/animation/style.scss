@@ -1,0 +1,140 @@
+/* Main menu */
+
+.page-header__menu a {
+  transition-property: color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+
+  &::after {
+    transition-property: background-color, width;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+  }
+
+  &:not(.active)::after {
+    display: block;
+    width: 0;
+    left: auto;
+    right: 0;
+  }
+
+  &:hover:not(.active)::after {
+    width: 100%;
+    left: 0;
+    right: auto;
+  }
+}
+
+/* Social */
+
+.social-block {
+  &__toggler {
+    transition-property: color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+  }
+
+  &__toggler::before {
+    transition-property: width, height;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in;
+  }
+
+  &__list {
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+  }
+
+  & li {
+    transition-property: opacity, transform;
+    transition-duration: 0.5s;
+    transition-delay: 0s, 0.2s;
+    transition-timing-function: ease;
+    opacity: 0;
+    transform: translateY(25%);
+  }
+
+  &--active li {
+    transition-property: opacity, transform;
+    transition-duration: 0.5s;
+    transition-delay: 0s;
+    opacity: 1;
+    transform: translateY(0);
+
+    &:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      transition-delay: 0.4s;
+    }
+  }
+
+  &__link {
+    transition-property: color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+  }
+}
+
+
+/* Screen intro */
+
+.screen--intro {
+  & .intro__message {
+    transition-property: transform, opacity;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in;
+    transition-delay: 0.5s;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  &.active .intro__message {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Screen story */
+
+.screen--story {
+  & .swiper-slide {
+    & .slider__item-text {
+      transform: translateX(50%);
+      opacity: 0;
+    }
+
+    &-active .slider__item-text {
+      transition-property: transform, opacity;
+      transition-duration: 0.5s;
+      transition-timing-function: ease, cubic-bezier(0.86, 0.06, 0.75, 0.67);
+      transition-delay: 0.2s;
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    &-next .slider__item-text {
+      transition-property: transform, opacity;
+      transition-duration: 0.5s;
+      transition-timing-function: ease, cubic-bezier(0.86, 0.06, 0.75, 0.67);
+      transition-delay: 0.5s;
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+/* Screen game */
+
+.screen--game {
+  & .chat__footer .form__field {
+    transition: width 0.4s ease;
+    margin-left: auto;
+  }
+
+  &:not(.active) .chat__footer .form__field {
+    width: 0;
+  }
+}
