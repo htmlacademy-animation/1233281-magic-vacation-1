@@ -41,8 +41,26 @@ export default class FullPageScroll {
 
   onUrlHashChanged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
-    this.activeScreen = (newIndex < 0) ? 0 : newIndex;
-    this.changePageDisplay();
+
+    const activeScreenElement = this.screenElements[this.activeScreen];
+    const nextScreenElement = this.screenElements[newIndex];
+
+    if (activeScreenElement.classList.contains(`screen--story`) && nextScreenElement.classList.contains(`screen--prizes`)) {
+      const screenTransitionElement = activeScreenElement.querySelector(`.screen__transition`);
+      screenTransitionElement.classList.add(`active`);
+
+      const onAnimationEnd = () => {
+        this.activeScreen = (newIndex < 0) ? 0 : newIndex;
+        this.changePageDisplay();
+        screenTransitionElement.classList.remove(`active`);
+        screenTransitionElement.removeEventListener(`animationend`, onAnimationEnd);
+      };
+
+      screenTransitionElement.addEventListener(`animationend`, onAnimationEnd);
+    } else {
+      this.activeScreen = (newIndex < 0) ? 0 : newIndex;
+      this.changePageDisplay();
+    }
   }
 
   changePageDisplay() {
