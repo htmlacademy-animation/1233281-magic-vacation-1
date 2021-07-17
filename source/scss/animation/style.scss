@@ -1,5 +1,21 @@
 /* Main elements */
 
+.screen__transition {
+  position: absolute;
+  width: 100vw;
+  height: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.screen--story.active .screen__transition.active {
+  height: 100vh;
+  background-color: #5f458c;
+  animation-name: screen-curtain;
+  animation-duration: 0.6s;
+  animation-timing-function: ease;
+}
+
 .page-header__logo {
   opacity: 0;
   transform: translateX(-10%);
@@ -54,23 +70,6 @@ body.loaded .social-block__toggler::before {
   animation-name: bubble;
   animation-duration: 0.3s;
   animation-timing-function: ease;
-
-  @keyframes bubble {
-    from {
-      width: 0;
-      height: 0;
-    }
-
-    75% {
-      width: 125%;
-      height: 125%;
-    }
-
-    100% {
-      width: 112.5%;
-      height: 112.5%;
-    }
-  }
 }
 
 .social-block {
@@ -201,5 +200,32 @@ body.loaded {
 
   &:not(.active) .chat__footer .form {
     width: 30%;
+  }
+}
+
+@keyframes screen-curtain {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 100vh;
+  }
+}
+
+@keyframes bubble {
+  from {
+    width: 0;
+    height: 0;
+  }
+
+  75% {
+    width: 125%;
+    height: 125%;
+  }
+
+  100% {
+    width: 112.5%;
+    height: 112.5%;
   }
 }
