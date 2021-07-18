@@ -67,7 +67,7 @@
 /* Social */
 
 body.loaded .social-block__toggler::before {
-  animation-name: bubble;
+  animation-name: social-bubble;
   animation-duration: 0.3s;
   animation-timing-function: ease;
 }
@@ -189,6 +189,97 @@ body.loaded {
   }
 }
 
+/* Screen rules */
+
+.screen--rules {
+  &.active {
+    & .rules__item p {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+
+    & .rules__link {
+      color: #5f458c;
+
+      &::before {
+        width: 100%;
+        left: 50%;
+        opacity: 1;
+      }
+    }
+  }
+
+  & .rules__link {
+    transition-property: color;
+    transition-duration: 0.3s;
+    transition-delay: 0.6s;
+    transition-timing-function: linear;
+    color: rgba(255, 255, 255, 0);
+
+    &::before {
+      transition-property: width, left, opacity;
+      transition-duration: 0.3s;
+      transition-delay: 0.6s;
+      transition-timing-function: linear, linear, ease;
+      width: 30%;
+      left: 85%;
+      opacity: 0;
+    }
+  }
+
+  & .rules__item {
+    & p {
+      transition-property: transform, opacity;
+      transition-duration: 0.6s;
+      transition-timing-function: ease, linear;
+      transition-delay: 0.1s;
+      transform: translateX(10%);
+      opacity: 0;
+    }
+
+
+    &::before {
+      animation-name: rules-bubble;
+      animation-duration: 0.6s;
+      animation-timing-function: ease;
+      animation-delay: 0.1s;
+      animation-fill-mode: both;
+    }
+
+    &:nth-child(2) {
+      p {
+        transition-delay: 0.3s;
+      }
+
+      &::before {
+        animation-delay: 0.3s;
+      }
+    }
+
+    &:nth-child(3) {
+      p {
+        transition-delay: 0.5s;
+      }
+
+      &::before {
+        animation-delay: 0.5s;
+      }
+    }
+
+    &:nth-child(4) {
+      p {
+        transition-delay: 0.7s;
+      }
+
+      &::before {
+        animation-delay: 0.7s;
+      }
+    }
+  }
+}
+
+
 /* Screen game */
 
 .screen--game {
@@ -213,7 +304,7 @@ body.loaded {
   }
 }
 
-@keyframes bubble {
+@keyframes social-bubble {
   from {
     width: 0;
     height: 0;
@@ -227,5 +318,22 @@ body.loaded {
   100% {
     width: 112.5%;
     height: 112.5%;
+  }
+}
+
+@keyframes rules-bubble {
+  from {
+    transform: scale(0);
+    color: rgba(255, 255, 255, 0);
+  }
+
+  75% {
+    transform: scale(1.02);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  100% {
+    transform: scale(1);
+    color: rgba(255, 255, 255, 1);
   }
 }
